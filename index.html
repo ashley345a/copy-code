@@ -11,19 +11,18 @@
       display: flex;
       justify-content: center;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-      background: #e8f1fa; /* 淡藍背景 */
+      background: #eaf2fb; /* 淡藍背景 */
       padding: 20px 0;
     }
     .paper {
       background: #ffffff;
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 28px 22px 24px;
       width: 95%;
       max-width: 440px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
     .logo {
       max-width: 120px;
@@ -48,11 +47,12 @@
     }
     .product {
       width: 30%;
-      background: #dce6f2;
-      border-radius: 12px;
+      background: #d9e6f8;
+      border-radius: 14px;
       padding: 8px;
       font-size: 13px;
       position: relative;
+      border: 2px dashed #a3c1e0; /* 手繪風邊框 */
     }
     .product a {
       color: #1b3a6b; 
@@ -65,26 +65,36 @@
     .product img {
       margin-top: 6px;
       width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
+      border: 1px dashed #a3c1e0; /* 手繪風邊框 */
+      background: #fff;
+    }
+    .copy-tip {
+      font-size: 13px;
+      color: red;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     .item {
-      background: #dce6f2;
-      border-radius: 14px;
+      background: #d9e6f8;
+      border-radius: 16px;
       padding: 14px;
       margin-bottom: 14px;
-      position: relative;
       text-align: center;
+      border: 2px dashed #a3c1e0; /* 手繪貼紙風 */
+      position: relative;
     }
     button {
       width: 100%;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 10px 0;
       font-size: 14px;
       background: #1b3a6b;
       color: #fff;
       cursor: pointer;
       position: relative;
+      box-shadow: 2px 2px 0 #a3c1e0; /* 手繪陰影效果 */
     }
     .copied {
       position: absolute;
@@ -106,14 +116,6 @@
       color: red;
       font-weight: 700;
     }
-    /* 可愛小狗塗鴉 */
-    .dog-doodle {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 60px;
-      opacity: 0.3;
-    }
   </style>
 </head>
 <body>
@@ -124,7 +126,7 @@
   <img class="logo" src="https://ppt.cc/fcZ4px@.jpg" alt="logo">
 
   <div class="title">今日可用優惠（數量有限先用先贏）</div>
-  <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運❗❗</div>
+  <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運（點⬇️）❗❗</div>
 
   <!-- 三格商品列 -->
   <div class="product-row">
@@ -142,6 +144,9 @@
     </div>
   </div>
 
+  <!-- 跳轉提示 -->
+  <div class="copy-tip">⚠️ 跳轉後請點選左上角「輸入優惠代碼」 將折扣碼貼上</div>
+
   <!-- 優惠碼按鈕 -->
   <div class="item">
     <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製滿 100 折 20 折扣碼</button>
@@ -155,8 +160,7 @@
 
   <!-- 活動說明 -->
   <div class="footer">
-    跳轉後請點選 <b>左上角「輸入優惠代碼」</b> 將折扣碼貼上<br>
-    📅 12/27-12/31 每天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
+    📅 12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
     🎉 12/31 周三免運日<br>
     • 01:00 前：隔日到貨 $99 免運<br>
     • 01:00 後：隔日到貨 $299 免運<br>
@@ -166,20 +170,15 @@
     Threads｜@ashley345a
   </div>
 
-  <!-- 可愛小狗塗鴉 -->
-  <img class="dog-doodle" src="https://i.imgur.com/4bXf0hS.png" alt="小狗塗鴉">
-
 </div>
 
 <script>
 function copyAndGo(btn, text) {
   const url = "https://s.shopee.tw/7fSOtpJWFd";
-
   navigator.clipboard.writeText(text).then(() => {
     const copiedDiv = btn.nextElementSibling;
     copiedDiv.style.display = "block";
     setTimeout(() => copiedDiv.style.display = "none", 1500);
-
     setTimeout(() => {
       window.location.href = url;
     }, 500);
