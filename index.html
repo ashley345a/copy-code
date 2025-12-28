@@ -20,7 +20,7 @@
       border-radius: 20px;
       padding: 28px 22px 24px;
       width: 90%;
-      max-width: 380px;
+      max-width: 400px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       border: 2px dashed #e0d8cc;
       text-align: center;
@@ -40,12 +40,21 @@
       color: #e74c3c;
       margin-bottom: 18px;
     }
-    .item {
+    .item, .product {
       background: #f3efe7;
       border-radius: 14px;
       padding: 14px;
       margin-bottom: 14px;
       position: relative;
+      text-align: left;
+    }
+    .product a {
+      color: #1b3a6b; /* 深藍字 */
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .product a:hover {
+      text-decoration: underline;
     }
     button {
       width: 100%;
@@ -74,7 +83,8 @@
       text-align: left;
     }
     .footer b {
-      color: #111;
+      color: red;
+      font-weight: 700;
     }
   </style>
 </head>
@@ -87,6 +97,14 @@
 
   <div class="title">今日可用優惠（數量有限先用先贏）</div>
   <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運❗❗</div>
+
+  <!-- 推薦商品 -->
+  <div class="product">
+    <a href="https://s.shopee.tw/5L5CxSWsHl" target="_blank">三層衛生紙</a>
+  </div>
+  <div class="product">
+    <a href="https://s.shopee.tw/2g4Rmc1sjv" target="_blank">義美小泡芙</a>
+  </div>
 
   <!-- 優惠碼按鈕 -->
   <div class="item">
@@ -101,9 +119,9 @@
 
   <!-- 活動說明 -->
   <div class="footer">
-    1️⃣ 跳轉後請點選左上角「輸入優惠代碼」將折扣碼貼上<br>
-    2️⃣ 12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
-    3️⃣ 12/31 周三免運日<br>
+    跳轉後請點選 <b>左上角「輸入優惠代碼」</b> 將折扣碼貼上<br>
+    12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
+    12/31 周三免運日<br>
     • 01:00 前：隔日到貨 $99 免運<br>
     • 01:00 後：隔日到貨 $299 免運<br>
     • 02:00 前：蝦皮店到店/OK 超商 $99 免運<br>
@@ -115,7 +133,7 @@
 
 <script>
 function copyAndGo(btn, text) {
-  const url = "https://s.shopee.tw/7fSOtpJWFd";
+  const url = "https://s.shopee.tw/1LZ4CR8Gsy";
 
   navigator.clipboard.writeText(text).then(() => {
     const copiedDiv = btn.nextElementSibling;
