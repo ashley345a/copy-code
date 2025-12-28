@@ -5,129 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>優惠頁面</title>
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-  background: linear-gradient(135deg, #fff1f0, #fef6e4 70%);
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* 光暈背景 */
-body::before, body::after {
-  content: '';
-  position: absolute;
-  filter: blur(120px);
-  z-index: 0;
-}
-body::before {
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(255,200,220,0.3) 0%, transparent 70%);
-  top: -150px; left: -200px;
-}
-body::after {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(180,220,255,0.25) 0%, transparent 70%);
-  bottom: -150px; right: -150px;
-}
-
-/* 飄落浮水印 */
-.floating {
-  position: absolute;
-  animation: float 8s linear infinite;
-  z-index: 0;
-}
-.floating.star { width: 8px; height: 8px; border-radius: 20%; background: rgba(255,230,180,0.7); }
-.floating.heart { width: 14px; height: 14px; background: rgba(255,180,200,0.6);
-  clip-path: polygon(50% 0%,61% 12%,75% 12%,88% 25%,88% 38%,75% 50%,50% 75%,25% 50%,12% 38%,12% 25%,25% 12%,39% 12%);
-}
-.floating.circle { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,200,220,0.6); }
-@keyframes float {
-  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
-  25% { opacity: 0.7; }
-  50% { transform: translateY(-200px) translateX(30px) rotate(45deg); opacity: 0.5; }
-  75% { opacity: 0.3; }
-  100% { transform: translateY(-400px) translateX(-20px) rotate(90deg); opacity: 0; }
-}
-
-/* 漂浮光斑 */
-.glow {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
-  animation: drift 15s linear infinite;
-  z-index: 0;
-}
-@keyframes drift {
-  0% { transform: translate(0,0) scale(0.5); opacity: 0.3; }
-  50% { opacity: 0.6; }
-  100% { transform: translate(200px,-400px) scale(1); opacity: 0; }
-}
-
-/* 全頁卡片容器 */
-.paper {
-  min-height: 100vh;
-  width: 100%;
-  padding: 40px 20px;
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1;
-}
-
-/* 標題 */
-.title { font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #3a3d55; }
-.subtitle { font-size: 16px; color: #5b7b9a; margin-bottom: 28px; }
-
-/* 三格商品列 */
-.product-row {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-.product {
-  flex: 0 0 120px; /* 固定寬度 */
-  background: #fff3f2;
-  border-radius: 18px;
-  padding: 10px;
-  font-size: 13px;
-  border: 1px dashed #f5c6c0;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.05), inset 0 1px 2px rgba(255,255,255,0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.product:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0,0,0,0.08), inset 0 1px 2px rgba(255,255,255,0.3); }
-.product a { color: #3a3d55; text-decoration: none; font-weight: 600; }
-.product a:hover { text-decoration: underline; }
-.product img { margin-top: 6px; width: 100%; border-radius: 12px; border: 1px dashed #f5c6c0; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: transform 0.2s ease; }
-.product img:hover { transform: scale(1.07); }
-
-/* 折扣碼按鈕 */
-.copy-tip { font-size: 13px; color: #ff6f61; font-weight: 700; margin-bottom: 12px; }
-.item { background: #fff3f2; border-radius: 18px; padding: 14px; margin-bottom: 16px; text-align: center; border: 1px dashed #f5c6c0; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.05); }
-button { width: 100%; border: none; border-radius: 18px; padding: 14px 0; font-size: 14px; color: #fff; cursor: pointer; font-weight: 700; background: linear-gradient(135deg, #ff9ccf 0%, #6c95d4 100%); box-shadow: 0 6px 12px rgba(0,0,0,0.1), inset 0 -2px 4px rgba(255,255,255,0.2); transition: transform 0.15s, box-shadow 0.15s; }
-button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15), inset 0 -2px 4px rgba(255,255,255,0.25); }
-.copied { position: absolute; top: 8px; right: 12px; font-size: 12px; color: #27ae60; display: none; font-weight: 600; }
-
-.footer { margin-top: 20px; font-size: 13px; color: #3a3d55; line-height: 1.6; text-align: center; }
-.footer b { color: #ff6f61; font-weight: 700; }
-
-.bottom-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 28px; padding-top: 14px; border-top: 1px solid #d1c6c0; color: #555555; font-size: 14px; font-weight: 500; }
-.bottom-logo img { width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+    background: #f9f8f6;
+    padding: 20px 0;
+  }
+  .paper {
+    background: #fffaf6;
+    border-radius: 24px;
+    padding: 24px 18px 40px; /* 多點底部空間給 Logo */
+    width: 95%;
+    max-width: 440px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    position: relative;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #3a3d55;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #4b6c8c;
+    margin-bottom: 18px;
+  }
+  /* 商品列 */
+  .product-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .product {
+    width: 30%;
+    background: #fff1f0;
+    border-radius: 14px;
+    padding: 8px;
+    font-size: 13px;
+    position: relative;
+    border: 2px dashed #f0c6c0;
+  }
+  .product a {
+    color: #3a3d55; 
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .product a:hover {
+    text-decoration: underline;
+  }
+  .product img {
+    margin-top: 6px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px dashed #f0c6c0;
+    background: #fff;
+  }
+  /* 跳轉提示 */
+  .copy-tip {
+    font-size: 13px;
+    color: #ff6f61;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  /* 優惠碼按鈕 */
+  .item {
+    background: #fff1f0;
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 14px;
+    text-align: center;
+    border: 2px dashed #f0c6c0;
+    position: relative;
+  }
+  button {
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    padding: 12px 0;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff9ccf, #4b6c8c);
+    box-shadow: 4px 4px 0 #f0c6c0, -2px -2px 0 #f0c6c0;
+    transition: transform 0.15s;
+  }
+  button:hover {
+    transform: translateY(-2px);
+  }
+  .copied {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 12px;
+    color: #27ae60;
+    display: none;
+    font-weight: 600;
+  }
+  /* 活動說明 */
+  .footer {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #3a3d55;
+    line-height: 1.5;
+    text-align: left;
+  }
+  .footer b {
+    color: #ff6f61;
+    font-weight: 700;
+  }
+  /* 底部 Logo + Threads */
+  .bottom-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #555555;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .bottom-logo img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* 圓形 */
+  }
 </style>
 </head>
 <body>
 
 <div class="paper">
+
   <div class="title">(數量有限先用先贏)</div>
   <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運（點⬇️）❗❗</div>
 
+  <!-- 三格商品列 -->
   <div class="product-row">
     <div class="product">
       <a href="https://s.shopee.tw/5L5CxSWsHl" target="_blank">三層衛生紙</a>
@@ -164,14 +184,13 @@ button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0
     • 02:00 後：蝦皮店到店 / OK 超商 $149 免運<br>
   </div>
 
+  <!-- 底部 Logo + Threads -->
   <div class="bottom-logo">
     <img src="https://ppt.cc/fcZ4px@.jpg" alt="logo">
     Threads｜@ashley345a
   </div>
-</div>
 
-<div id="floating-container"></div>
-<div id="glow-container"></div>
+</div>
 
 <script>
 function copyAndGo(btn, text) {
@@ -180,36 +199,12 @@ function copyAndGo(btn, text) {
     const copiedDiv = btn.nextElementSibling;
     copiedDiv.style.display = "block";
     setTimeout(() => copiedDiv.style.display = "none", 1500);
-    setTimeout(() => { window.location.href = url; }, 500);
-  }).catch(() => { alert("請長按手動複製"); });
-}
-
-// 飄落浮水印
-const container = document.getElementById('floating-container');
-const shapes = ['star','heart','circle'];
-for(let i=0;i<35;i++){
-  const span = document.createElement('span');
-  const shape = shapes[Math.floor(Math.random()*shapes.length)];
-  span.className = `floating ${shape}`;
-  span.style.left = Math.random()*100 + 'vw';
-  span.style.top = Math.random()*100 + 'vh';
-  span.style.animationDuration = (5+Math.random()*10) + 's';
-  span.style.opacity = Math.random();
-  container.appendChild(span);
-}
-
-// 漂浮光斑
-const glowContainer = document.getElementById('glow-container');
-for(let i=0;i<20;i++){
-  const glow = document.createElement('span');
-  glow.className = 'glow';
-  glow.style.left = Math.random()*100 + 'vw';
-  glow.style.top = Math.random()*100 + 'vh';
-  glow.style.width = (10 + Math.random()*25) + 'px';
-  glow.style.height = glow.style.width;
-  glow.style.animationDuration = (10 + Math.random()*15) + 's';
-  glow.style.opacity = Math.random()*0.5 + 0.2;
-  glowContainer.appendChild(glow);
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500);
+  }).catch(() => {
+    alert("請長按手動複製");
+  });
 }
 </script>
 
