@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>複製折扣碼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fafafa;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+    }
+    .card {
+      background: #ffffff;
+      padding: 28px 24px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      text-align: center;
+      width: 90%;
+      max-width: 360px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    .code {
+      background: #f3f3f3;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      word-break: break-all;
+    }
+    button {
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      background: #111;
+      color: #fff;
+    }
+    .hint {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="title">折扣碼已準備好</div>
+
+  <div class="code">
+    45V35RQ4W<br>
+    68J4ZP8TAAS
+  </div>
+
+  <button onclick="copyAndGo()">一鍵複製並前往</button>
+
+  <div class="hint">點擊後直接貼上即可</div>
+</div>
+
+<script>
+function copyAndGo() {
+  const text = `45V35RQ4W
+68J4ZP8TAAS`;
+  const url = "https://s.shopee.tw/7fSOtpJWFd";
+
+  navigator.clipboard.writeText(text).then(() => {
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500);
+  }).catch(() => {
+    alert("請長按手動複製");
+  });
+}
+</script>
+
+</body>
+</html>
