@@ -10,22 +10,26 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-      background: url('https://ppt.cc/fcZ4px@.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: #f6f4ef;
+      padding-top: 20px;
     }
     .paper {
-      background: rgba(255, 253, 248, 0.95);
+      background: #fffdf8;
       border-radius: 20px;
       padding: 28px 22px 24px;
       width: 90%;
       max-width: 380px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       border: 2px dashed #e0d8cc;
+      text-align: center;
+    }
+    .logo {
+      max-width: 120px;
+      margin-bottom: 18px;
     }
     .title {
-      text-align: center;
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 18px;
@@ -73,6 +77,7 @@
       font-size: 13px;
       color: #555;
       line-height: 1.5;
+      text-align: left;
     }
     .footer b {
       color: #111;
@@ -82,8 +87,12 @@
 <body>
 
 <div class="paper">
+  <!-- LOGO -->
+  <img class="logo" src="https://ppt.cc/fcZ4px@.jpg" alt="logo">
+
   <div class="title">今日可用優惠</div>
 
+  <!-- 優惠碼項目 -->
   <div class="item">
     <div class="label">滿 100 折 20</div>
     <div class="code">68J4ZP8TAAS</div>
@@ -98,6 +107,7 @@
     <div class="copied">已複製 ✓</div>
   </div>
 
+  <!-- 說明文字 -->
   <div class="footer">
     1️⃣ 跳轉後請直接點選左上角「輸入優惠代碼」將折扣碼貼上<br>
     2️⃣ 12/27-12/31 有發一張蝦皮店到店 99 免運劵（已歸戶結帳選用即可）<br>
@@ -120,24 +130,8 @@ function copyAndGo(btn, text) {
     copiedDiv.style.display = "block";
     setTimeout(() => copiedDiv.style.display = "none", 1500);
 
-    // 0.5 秒後跳轉蝦皮
     setTimeout(() => {
       window.location.href = url;
-    }, 500);
-  }).catch(() => {
-    alert("請長按手動複製");
-  });
-}
-</script>
-
-</body>
-</html>    const copiedDiv = btn.nextElementSibling;
-    copiedDiv.style.display = "block";
-    setTimeout(() => copiedDiv.style.display = "none", 1500);
-
-    // 跳轉蝦皮購物頁面
-    setTimeout(() => {
-      window.location.href = "https://s.shopee.tw/7fSOtpJWFd";
     }, 500);
   }).catch(() => {
     alert("請長按手動複製");
