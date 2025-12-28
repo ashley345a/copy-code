@@ -2,81 +2,127 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>複製折扣碼</title>
+  <title>優惠碼複製</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
+      background: #f6f4ef;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #fafafa;
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+      font-family: "Noto Sans TC", "PingFang TC", sans-serif;
     }
-    .card {
-      background: #ffffff;
-      padding: 28px 24px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      text-align: center;
+    .paper {
+      background: #fffdf8;
+      border-radius: 20px;
+      padding: 28px 22px 24px;
       width: 90%;
       max-width: 360px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 2px dashed #e0d8cc;
     }
     .title {
+      text-align: center;
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .item {
+      background: #f3efe7;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #555;
     }
     .code {
-      background: #f3f3f3;
-      border-radius: 10px;
-      padding: 12px;
       font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 18px;
-      word-break: break-all;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
     }
     button {
       width: 100%;
-      padding: 14px 0;
-      border-radius: 12px;
       border: none;
-      font-size: 16px;
-      font-weight: 600;
-      background: #111;
+      border-radius: 12px;
+      padding: 10px 0;
+      font-size: 14px;
+      background: #1c1c1c;
       color: #fff;
+      cursor: pointer;
     }
-    .hint {
-      margin-top: 12px;
+    .copied {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      color: #27ae60;
+      display: none;
+      font-weight: 600;
+    }
+    .footer {
+      margin-top: 18px;
+      text-align: center;
       font-size: 13px;
-      color: #888;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-<div class="card">
-  <div class="title">折扣碼已準備好</div>
+<div class="paper">
+  <div class="title">今日可用優惠</div>
 
-  <div class="code">
-    45V35RQ4W<br>
-    68J4ZP8TAAS
+  <div class="item">
+    <div class="label">滿 100 折 20</div>
+    <div class="code">68J4ZP8TAAS</div>
+    <button onclick="copyAndGo(this,'100-20 68J4ZP8TAAS')">複製這組</button>
+    <div class="copied">已複製 ✓</div>
   </div>
 
-  <button onclick="copyAndGo()">一鍵複製並前往</button>
+  <div class="item">
+    <div class="label">滿 59 折 10</div>
+    <div class="code">45V35RQ4W</div>
+    <button onclick="copyAndGo(this,'59-10 45V35RQ4W')">複製這組</button>
+    <div class="copied">已複製 ✓</div>
+  </div>
 
-  <div class="hint">點擊後直接貼上即可</div>
+  <!-- 之後要新增優惠碼，只要複製這段 <div class="item"> ... </div> -->
+  <!--
+  <div class="item">
+    <div class="label">滿 XX 折 XX</div>
+    <div class="code">XXXXX</div>
+    <button onclick="copyAndGo(this,'XX-XX XXXXX')">複製這組</button>
+    <div class="copied">已複製 ✓</div>
+  </div>
+  -->
+
+  <div class="footer">
+    Threads｜@ashley345a
+  </div>
 </div>
 
 <script>
-function copyAndGo() {
-  const text = `45V35RQ4W
-68J4ZP8TAAS`;
+function copyAndGo(btn, text) {
   const url = "https://s.shopee.tw/7fSOtpJWFd";
 
   navigator.clipboard.writeText(text).then(() => {
+    // 顯示已複製
+    const copiedDiv = btn.nextElementSibling;
+    copiedDiv.style.display = "block";
+
+    setTimeout(() => {
+      copiedDiv.style.display = "none";
+    }, 1500);
+
+    // 0.5秒後跳轉
     setTimeout(() => {
       window.location.href = url;
     }, 500);
