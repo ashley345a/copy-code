@@ -26,8 +26,6 @@ button::after{content:"✂";position:absolute;top:-6px;right:-6px;font-size:10px
 .footer b{color:#ff6f61;font-weight:700;}
 .bottom-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:24px;padding-top:12px;border-top:1px solid #555555;color:#555555;font-size:14px;font-weight:500;}
 .bottom-logo img{width:36px;height:36px;border-radius:50%;}
-
-/* 編輯面板 */
 .edit-panel{width:320px;max-height:100%;overflow:auto;background:#fff;border-left:1px solid #ccc;padding:12px;box-sizing:border-box;margin-bottom:0;}
 .edit-panel h3{margin:6px 0;}
 .edit-panel label{font-size:12px;font-weight:600;}
@@ -80,9 +78,12 @@ threadsId:"Threads｜@ashley345a",
 redirectUrl:"https://s.shopee.tw/7fSOtpJWFd"
 };
 
-function renderPreview(){
+window.onload = function(){
 const preview=document.getElementById("preview");
-preview.innerHTML=`
+function renderPreview(){
+    if(!data.products)data.products=[];
+    if(!data.coupons)data.coupons=[];
+    preview.innerHTML=`
 <div class="title">${data.title}</div>
 <div class="subtitle">${data.subtitle}</div>
 <div class="copy-tip">${data.copyTip}</div>
@@ -92,13 +93,74 @@ ${data.products.map(p=>`<div class="product"><a href="${p.url}" target="_blank">
 ${data.coupons.map(c=>`<div class="item"><button onclick="copyAndGo(this,'${c.code}')">${c.text}</button><div class="copied">已複製 ✓</div></div>`).join('')}
 <div class="footer">${data.footer.replace(/\n/g,'<br>')}</div>
 <div class="bottom-logo"><img src="${data.logo}"><span>${data.threadsId}</span></div>
-`;
-document.getElementById("edit-title").value=data.title;
-document.getElementById("edit-subtitle").value=data.subtitle;
-document.getElementById("edit-copyTip").value=data.copyTip;
-document.getElementById("edit-footer").value=data.footer;
-document.getElementById("edit-logo").value=data.logo;
-document.getElementById("edit-threads").value=data.threadsId;
-document.getElementById("edit-redirect").value=data.redirectUrl;
-document.getElementById("edit-products").value=data.products.map(p=>`${p.name},${p.url},${p.img}`).join("\n");
-document.getElementById("edit-coupons").value=data.coupons
+    `;
+    document.getElementById("edit-title").value=data.title;
+    document.getElementById("edit-subtitle").value=data.subtitle;
+    document.getElementById("edit-copyTip").value=data.copyTip;
+    document.getElementById("edit-footer").value=data.footer;
+    document.getElementById("edit-logo").value=data.logo;
+    document.getElementById("edit-threads").value=data.threadsId;
+    document.getElementById("edit-redirect").value=data.redirectUrl;
+    document.getElementById("edit-products").value=data.products.map(p=>`${p.name},${p.url},${p.img}`).join("\n");
+    document.getElementById("edit-coupons").value=data.coupons.map(c=>`${c.text},${c.code}`).join("\n");
+}
+
+window.renderPreview=renderPreview;
+renderPreview();
+
+const saved=localStorage.getItem("copyPageData");
+if(saved){
+    try{data=JSON.parse(saved);}catch(e){console.error(e);}
+    renderPreview();
+}
+
+window.copyAndGo=function(btn,code){
+navigator.clipboard.writeText(code).then(()=>{
+const tip=btn.nextElementSibling; tip.style.display="block";
+setTimeout(()=>tip.style.display="none",1500);
+setTimeout(()=>{window.location.href=data.redirectUrl},500);
+}).catch(()=>alert("請長按手動複製"));
+}
+
+window.updateContent=function(){
+data.title=document.getElementById("edit-title").value;
+data.subtitle=document.getElementById("edit-subtitle").value;
+data.copyTip=document.getElementById("edit-copyTip").value;
+data.footer=document.getElementById("edit-footer").value;
+data.logo=document.getElementById("edit-logo").value;
+data.threadsId=document.getElementById("edit-threads").value;
+data.redirectUrl=document.getElementById("edit-redirect").value;
+const prodText=document.getElementById("edit-products").value.split("\n").filter(l=>l.trim());
+data.products=prodText.map(l=>{const [name,url,img]=l.split(",");return {name,url,img};});
+const couponText=document.getElementById("edit-coupons").value.split("\n").filter(l=>l.trim());
+data.coupons=couponText.map(l=>{const [text,code]=l.split(",");return {text,code};});
+renderPreview();
+localStorage.setItem("copyPageData", JSON.stringify(data));
+}
+
+window.generateCode=function(){
+const style=document.querySelector("style").outerHTML;
+const htmlContent=`<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蝦皮優惠頁面</title>
+${style}
+</head>
+<body>
+${preview.outerHTML}
+<script>
+function copyAndGo(btn, code){
+navigator.clipboard.writeText(code).then(()=>{
+const tip=btn.nextElementSibling; tip.style.display="block";
+setTimeout(()=>tip.style.display="none",1500);
+setTimeout(()=>{window.location.href='${data.redirectUrl}'},500);
+}).catch(()=>alert("請長按手動複製"));
+}
+</script>
+</body>
+</html>`;
+document.getElementById("generated-code").value=htmlContent.replace(/></g,'>\n<');
+}
+};
