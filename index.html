@@ -11,18 +11,19 @@
       display: flex;
       justify-content: center;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-      background: #fdf8f0;
+      background: #e8f1fa; /* 淡藍背景 */
       padding: 20px 0;
     }
     .paper {
-      background: #fffdf8;
+      background: #ffffff;
       border-radius: 20px;
       padding: 28px 22px 24px;
       width: 95%;
-      max-width: 420px;
+      max-width: 440px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      border: 2px dashed #e0d8cc;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     .logo {
       max-width: 120px;
@@ -32,11 +33,11 @@
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 8px;
-      letter-spacing: 1px;
+      color: #1b3a6b;
     }
     .subtitle {
       font-size: 13px;
-      color: #e74c3c;
+      color: #1565c0;
       margin-bottom: 18px;
     }
     .product-row {
@@ -47,13 +48,14 @@
     }
     .product {
       width: 30%;
-      background: #f3efe7;
+      background: #dce6f2;
       border-radius: 12px;
       padding: 8px;
       font-size: 13px;
+      position: relative;
     }
     .product a {
-      color: #1b3a6b; /* 深藍字 */
+      color: #1b3a6b; 
       text-decoration: none;
       font-weight: 500;
     }
@@ -66,7 +68,7 @@
       border-radius: 8px;
     }
     .item {
-      background: #f3efe7;
+      background: #dce6f2;
       border-radius: 14px;
       padding: 14px;
       margin-bottom: 14px;
@@ -79,9 +81,10 @@
       border-radius: 12px;
       padding: 10px 0;
       font-size: 14px;
-      background: #1c1c1c;
+      background: #1b3a6b;
       color: #fff;
       cursor: pointer;
+      position: relative;
     }
     .copied {
       position: absolute;
@@ -95,13 +98,21 @@
     .footer {
       margin-top: 18px;
       font-size: 13px;
-      color: #555;
+      color: #1b3a6b;
       line-height: 1.5;
       text-align: left;
     }
     .footer b {
       color: red;
       font-weight: 700;
+    }
+    /* 可愛小狗塗鴉 */
+    .dog-doodle {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 60px;
+      opacity: 0.3;
     }
   </style>
 </head>
@@ -133,27 +144,31 @@
 
   <!-- 優惠碼按鈕 -->
   <div class="item">
-    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製滿 100 折 20 優惠碼</button>
+    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製滿 100 折 20 折扣碼</button>
     <div class="copied">已複製 ✓</div>
   </div>
 
   <div class="item">
-    <button onclick="copyAndGo(this,'45V35RQ4W')">複製滿 59 折 10 優惠碼</button>
+    <button onclick="copyAndGo(this,'45V35RQ4W')">複製滿 59 折 10 折扣碼</button>
     <div class="copied">已複製 ✓</div>
   </div>
 
   <!-- 活動說明 -->
   <div class="footer">
     跳轉後請點選 <b>左上角「輸入優惠代碼」</b> 將折扣碼貼上<br>
-    12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
-    12/31 周三免運日<br>
+    📅 12/27-12/31 每天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
+    🎉 12/31 周三免運日<br>
     • 01:00 前：隔日到貨 $99 免運<br>
     • 01:00 後：隔日到貨 $299 免運<br>
-    • 02:00 前：蝦皮店到店/OK 超商 $99 免運<br>
-    • 02:00 後：蝦皮店到店/OK 超商 $149 免運<br>
+    • 02:00 前：蝦皮店到店 / OK 超商 $99 免運<br>
+    • 02:00 後：蝦皮店到店 / OK 超商 $149 免運<br>
     <br>
     Threads｜@ashley345a
   </div>
+
+  <!-- 可愛小狗塗鴉 -->
+  <img class="dog-doodle" src="https://i.imgur.com/4bXf0hS.png" alt="小狗塗鴉">
+
 </div>
 
 <script>
