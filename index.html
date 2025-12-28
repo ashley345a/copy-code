@@ -10,7 +10,6 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
       background: #fdf8f0;
       padding: 20px 0;
@@ -19,8 +18,8 @@
       background: #fffdf8;
       border-radius: 20px;
       padding: 28px 22px 24px;
-      width: 90%;
-      max-width: 400px;
+      width: 95%;
+      max-width: 420px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       border: 2px dashed #e0d8cc;
       text-align: center;
@@ -40,13 +39,18 @@
       color: #e74c3c;
       margin-bottom: 18px;
     }
-    .item, .product {
+    .product-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .product {
+      width: 30%;
       background: #f3efe7;
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 14px;
-      position: relative;
-      text-align: left;
+      border-radius: 12px;
+      padding: 8px;
+      font-size: 13px;
     }
     .product a {
       color: #1b3a6b; /* 深藍字 */
@@ -55,6 +59,19 @@
     }
     .product a:hover {
       text-decoration: underline;
+    }
+    .product img {
+      margin-top: 6px;
+      width: 100%;
+      border-radius: 8px;
+    }
+    .item {
+      background: #f3efe7;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      position: relative;
+      text-align: center;
     }
     button {
       width: 100%;
@@ -98,12 +115,20 @@
   <div class="title">今日可用優惠（數量有限先用先贏）</div>
   <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運❗❗</div>
 
-  <!-- 推薦商品 -->
-  <div class="product">
-    <a href="https://s.shopee.tw/5L5CxSWsHl" target="_blank">三層衛生紙</a>
-  </div>
-  <div class="product">
-    <a href="https://s.shopee.tw/2g4Rmc1sjv" target="_blank">義美小泡芙</a>
+  <!-- 三格商品列 -->
+  <div class="product-row">
+    <div class="product">
+      <a href="https://s.shopee.tw/5L5CxSWsHl" target="_blank">三層衛生紙</a>
+      <img src="https://ppt.cc/farXdx@.jpg" alt="三層衛生紙">
+    </div>
+    <div class="product">
+      <a href="https://s.shopee.tw/2g4Rmc1sjv" target="_blank">義美小泡芙</a>
+      <img src="https://ppt.cc/fwNqbx@.jpg" alt="義美小泡芙">
+    </div>
+    <div class="product">
+      <a href="https://s.shopee.tw/6faaYj2jFp" target="_blank">巧克力酥片</a>
+      <img src="https://ppt.cc/fNB7Zx@.jpg" alt="巧克力酥片">
+    </div>
   </div>
 
   <!-- 優惠碼按鈕 -->
@@ -133,7 +158,7 @@
 
 <script>
 function copyAndGo(btn, text) {
-  const url = "https://s.shopee.tw/1LZ4CR8Gsy";
+  const url = "https://s.shopee.tw/7fSOtpJWFd";
 
   navigator.clipboard.writeText(text).then(() => {
     const copiedDiv = btn.nextElementSibling;
