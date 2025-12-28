@@ -69,19 +69,22 @@
     background: #fff;
   }
 
-  /* 浮動小圖示 - 可愛精靈效果 */
-  .float-icon {
+  /* 蝴蝶結裝飾 + 擺動動畫 */
+  .bow {
     position: absolute;
-    pointer-events: none;
-    opacity: 0;
-    animation: floatUp linear forwards;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://i.imgur.com/6nT0z1H.png'); /* 蝴蝶結圖 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: swing 2s ease-in-out infinite alternate;
   }
-  @keyframes floatUp {
-    0% { transform: translateY(100%) translateX(0px); opacity: 0; }
-    10% { opacity: 1; }
-    50% { transform: translateY(-50%) translateX(10px); }
-    70% { transform: translateY(-80%) translateX(-10px); }
-    100% { transform: translateY(-120%) translateX(0px); opacity: 0; }
+  @keyframes swing {
+    0% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
   }
 
   /* 跳轉提示 */
@@ -133,8 +136,9 @@
     margin-top: 18px;
     font-size: 13px;
     color: #3a3d55;
-    line-height: 1.5;
+    line-height: 1.6;
     text-align: left;
+    white-space: pre-line; /* 保留換行 */
   }
   .footer b {
     color: #ff6f61;
@@ -171,14 +175,17 @@
   <!-- 三格商品列 -->
   <div class="product-row">
     <div class="product" onclick="window.open('https://s.shopee.tw/4fpWKVfjm9', '_blank')">
+      <div class="bow"></div>
       <a>三層衛生紙</a>
       <img src="https://ppt.cc/farXdx@.jpg" alt="三層衛生紙">
     </div>
     <div class="product" onclick="window.open('https://s.shopee.tw/4VW68CwWjn', '_blank')">
+      <div class="bow"></div>
       <a>義美小泡芙</a>
       <img src="https://ppt.cc/fwNqbx@.jpg" alt="義美小泡芙">
     </div>
     <div class="product" onclick="window.open('https://s.shopee.tw/LgXAYUbgQ', '_blank')">
+      <div class="bow"></div>
       <a>巧克力酥片</a>
       <img src="https://ppt.cc/fNB7Zx@.jpg" alt="巧克力酥片">
     </div>
@@ -192,12 +199,14 @@
   </div>
 
   <div class="footer">
-    📅 12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
-    🎉 12/31 周三免運日<br>
-    • 01:00 前：隔日到貨 $99 免運<br>
-    • 01:00 後：隔日到貨 $299 免運<br>
-    • 02:00 前：蝦皮店到店 / OK 超商 $99 免運<br>
-    • 02:00 後：蝦皮店到店 / OK 超商 $149 免運<br>
+📅 12/27-12/31 連續五天  
+各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）  
+
+🎉 12/31 周三免運日  
+• 01:00 前：隔日到貨 $99 免運  
+• 01:00 後：隔日到貨 $299 免運  
+• 02:00 前：蝦皮店到店 / OK 超商 $99 免運  
+• 02:00 後：蝦皮店到店 / OK 超商 $149 免運
   </div>
 
   <div class="bottom-logo">
@@ -221,26 +230,6 @@ function copyAndGo(btn, text) {
     alert("請長按手動複製");
   });
 }
-
-// 精靈浮動圖示
-const icons = ['❤️','⭐','💫','✨','💖'];
-function createFloatingIcon() {
-  const products = document.querySelectorAll('.product');
-  products.forEach(product => {
-    const icon = document.createElement('div');
-    icon.className = 'float-icon';
-    icon.textContent = icons[Math.floor(Math.random() * icons.length)];
-    icon.style.left = Math.random() * 70 + '%';
-    icon.style.fontSize = (Math.random()*12 + 12) + 'px';
-    icon.style.animationDuration = (Math.random()*3 + 2) + 's';
-    icon.style.animationTimingFunction = 'ease-in-out';
-    product.appendChild(icon);
-    setTimeout(() => {
-      if(product.contains(icon)) product.removeChild(icon);
-    }, 5000);
-  });
-}
-setInterval(createFloatingIcon, 600);
 </script>
 
 </body>
