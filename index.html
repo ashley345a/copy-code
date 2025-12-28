@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>優惠碼複製</title>
+  <title>今日優惠</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -12,8 +12,8 @@
       justify-content: center;
       align-items: flex-start;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-      background: #f6f4ef;
-      padding-top: 20px;
+      background: #fdf8f0;
+      padding: 20px 0;
     }
     .paper {
       background: #fffdf8;
@@ -27,13 +27,18 @@
     }
     .logo {
       max-width: 120px;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
     .title {
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 18px;
+      margin-bottom: 8px;
       letter-spacing: 1px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #e74c3c;
+      margin-bottom: 18px;
     }
     .item {
       background: #f3efe7;
@@ -41,17 +46,6 @@
       padding: 14px;
       margin-bottom: 14px;
       position: relative;
-    }
-    .label {
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: #555;
-    }
-    .code {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
     }
     button {
       width: 100%;
@@ -87,30 +81,28 @@
 <body>
 
 <div class="paper">
-  <!-- LOGO -->
+
+  <!-- Logo -->
   <img class="logo" src="https://ppt.cc/fcZ4px@.jpg" alt="logo">
 
-  <div class="title">今日可用優惠</div>
+  <div class="title">今日可用優惠（數量有限先用先贏）</div>
+  <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運❗❗</div>
 
-  <!-- 優惠碼項目 -->
+  <!-- 優惠碼按鈕 -->
   <div class="item">
-    <div class="label">滿 100 折 20</div>
-    <div class="code">68J4ZP8TAAS</div>
-    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製這組</button>
+    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製滿 100 折 20 優惠碼</button>
     <div class="copied">已複製 ✓</div>
   </div>
 
   <div class="item">
-    <div class="label">滿 59 折 10</div>
-    <div class="code">45V35RQ4W</div>
-    <button onclick="copyAndGo(this,'45V35RQ4W')">複製這組</button>
+    <button onclick="copyAndGo(this,'45V35RQ4W')">複製滿 59 折 10 優惠碼</button>
     <div class="copied">已複製 ✓</div>
   </div>
 
-  <!-- 說明文字 -->
+  <!-- 活動說明 -->
   <div class="footer">
-    1️⃣ 跳轉後請直接點選左上角「輸入優惠代碼」將折扣碼貼上<br>
-    2️⃣ 12/27-12/31 有發一張蝦皮店到店 99 免運劵（已歸戶結帳選用即可）<br>
+    1️⃣ 跳轉後請點選左上角「輸入優惠代碼」將折扣碼貼上<br>
+    2️⃣ 12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
     3️⃣ 12/31 周三免運日<br>
     • 01:00 前：隔日到貨 $99 免運<br>
     • 01:00 後：隔日到貨 $299 免運<br>
