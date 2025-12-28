@@ -12,15 +12,15 @@
       justify-content: center;
       align-items: center;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
-      background: url('https://lurl.cc/uA86w') no-repeat center center fixed;
+      background: url('https://ppt.cc/fcZ4px@.jpg') no-repeat center center fixed;
       background-size: cover;
     }
     .paper {
-      background: rgba(255, 253, 248, 0.9);
+      background: rgba(255, 253, 248, 0.95);
       border-radius: 20px;
       padding: 28px 22px 24px;
       width: 90%;
-      max-width: 360px;
+      max-width: 380px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       border: 2px dashed #e0d8cc;
     }
@@ -70,9 +70,12 @@
     }
     .footer {
       margin-top: 18px;
-      text-align: center;
       font-size: 13px;
-      color: #777;
+      color: #555;
+      line-height: 1.5;
+    }
+    .footer b {
+      color: #111;
     }
   </style>
 </head>
@@ -96,16 +99,39 @@
   </div>
 
   <div class="footer">
+    1️⃣ 跳轉後請直接點選左上角「輸入優惠代碼」將折扣碼貼上<br>
+    2️⃣ 12/27-12/31 有發一張蝦皮店到店 99 免運劵（已歸戶結帳選用即可）<br>
+    3️⃣ 12/31 周三免運日<br>
+    • 01:00 前：隔日到貨 $99 免運<br>
+    • 01:00 後：隔日到貨 $299 免運<br>
+    • 02:00 前：蝦皮店到店/OK 超商 $99 免運<br>
+    • 02:00 後：蝦皮店到店/OK 超商 $149 免運<br>
+    <br>
     Threads｜@ashley345a
   </div>
 </div>
 
 <script>
 function copyAndGo(btn, text) {
-  // 複製代碼
+  const url = "https://s.shopee.tw/7fSOtpJWFd";
+
   navigator.clipboard.writeText(text).then(() => {
-    // 顯示已複製
     const copiedDiv = btn.nextElementSibling;
+    copiedDiv.style.display = "block";
+    setTimeout(() => copiedDiv.style.display = "none", 1500);
+
+    // 0.5 秒後跳轉蝦皮
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500);
+  }).catch(() => {
+    alert("請長按手動複製");
+  });
+}
+</script>
+
+</body>
+</html>    const copiedDiv = btn.nextElementSibling;
     copiedDiv.style.display = "block";
     setTimeout(() => copiedDiv.style.display = "none", 1500);
 
