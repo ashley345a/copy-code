@@ -8,14 +8,15 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #f6f4ef;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+      background: url('https://lurl.cc/uA86w') no-repeat center center fixed;
+      background-size: cover;
     }
     .paper {
-      background: #fffdf8;
+      background: rgba(255, 253, 248, 0.9);
       border-radius: 20px;
       padding: 28px 22px 24px;
       width: 90%;
@@ -83,26 +84,16 @@
   <div class="item">
     <div class="label">滿 100 折 20</div>
     <div class="code">68J4ZP8TAAS</div>
-    <button onclick="copyAndGo(this,'100-20 68J4ZP8TAAS')">複製這組</button>
+    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製這組</button>
     <div class="copied">已複製 ✓</div>
   </div>
 
   <div class="item">
     <div class="label">滿 59 折 10</div>
     <div class="code">45V35RQ4W</div>
-    <button onclick="copyAndGo(this,'59-10 45V35RQ4W')">複製這組</button>
+    <button onclick="copyAndGo(this,'45V35RQ4W')">複製這組</button>
     <div class="copied">已複製 ✓</div>
   </div>
-
-  <!-- 之後要新增優惠碼，只要複製這段 <div class="item"> ... </div> -->
-  <!--
-  <div class="item">
-    <div class="label">滿 XX 折 XX</div>
-    <div class="code">XXXXX</div>
-    <button onclick="copyAndGo(this,'XX-XX XXXXX')">複製這組</button>
-    <div class="copied">已複製 ✓</div>
-  </div>
-  -->
 
   <div class="footer">
     Threads｜@ashley345a
@@ -111,20 +102,16 @@
 
 <script>
 function copyAndGo(btn, text) {
-  const url = "https://s.shopee.tw/7fSOtpJWFd";
-
+  // 複製代碼
   navigator.clipboard.writeText(text).then(() => {
     // 顯示已複製
     const copiedDiv = btn.nextElementSibling;
     copiedDiv.style.display = "block";
+    setTimeout(() => copiedDiv.style.display = "none", 1500);
 
+    // 跳轉蝦皮購物頁面
     setTimeout(() => {
-      copiedDiv.style.display = "none";
-    }, 1500);
-
-    // 0.5秒後跳轉
-    setTimeout(() => {
-      window.location.href = url;
+      window.location.href = "https://s.shopee.tw/7fSOtpJWFd";
     }, 500);
   }).catch(() => {
     alert("請長按手動複製");
