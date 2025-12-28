@@ -13,6 +13,7 @@
     font-family: "Noto Sans TC", "PingFang TC", sans-serif;
     background: #f9f8f6;
     padding: 20px 0;
+    overflow-x: hidden;
   }
   .paper {
     background: #fffaf6;
@@ -52,11 +53,7 @@
     position: relative;
     border: 2px dashed #f0c6c0;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .product:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    overflow: hidden;
   }
   .product a {
     color: #3a3d55; 
@@ -70,10 +67,21 @@
     border-radius: 10px;
     border: 1px dashed #f0c6c0;
     background: #fff;
-    transition: transform 0.2s;
   }
-  .product:hover img {
-    transform: scale(1.05);
+
+  /* 浮動小圖示 - 可愛精靈效果 */
+  .float-icon {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    animation: floatUp linear forwards;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100%) translateX(0px); opacity: 0; }
+    10% { opacity: 1; }
+    50% { transform: translateY(-50%) translateX(10px); }
+    70% { transform: translateY(-80%) translateX(-10px); }
+    100% { transform: translateY(-120%) translateX(0px); opacity: 0; }
   }
 
   /* 跳轉提示 */
@@ -183,11 +191,6 @@
     <div class="copied">已複製 ✓</div>
   </div>
 
-  <div class="item">
-    <button onclick="copyAndGo(this,'45V35RQ4W')">複製滿 59 折 10 折扣碼</button>
-    <div class="copied">已複製 ✓</div>
-  </div>
-
   <div class="footer">
     📅 12/27-12/31 連續五天各有一張蝦皮店到店 $99 免運劵（已歸戶結帳選用即可）<br>
     🎉 12/31 周三免運日<br>
@@ -218,6 +221,26 @@ function copyAndGo(btn, text) {
     alert("請長按手動複製");
   });
 }
+
+// 精靈浮動圖示
+const icons = ['❤️','⭐','💫','✨','💖'];
+function createFloatingIcon() {
+  const products = document.querySelectorAll('.product');
+  products.forEach(product => {
+    const icon = document.createElement('div');
+    icon.className = 'float-icon';
+    icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+    icon.style.left = Math.random() * 70 + '%';
+    icon.style.fontSize = (Math.random()*12 + 12) + 'px';
+    icon.style.animationDuration = (Math.random()*3 + 2) + 's';
+    icon.style.animationTimingFunction = 'ease-in-out';
+    product.appendChild(icon);
+    setTimeout(() => {
+      if(product.contains(icon)) product.removeChild(icon);
+    }, 5000);
+  });
+}
+setInterval(createFloatingIcon, 600);
 </script>
 
 </body>
