@@ -35,6 +35,7 @@
     color: #4b6c8c;
     margin-bottom: 18px;
   }
+
   /* 商品列 */
   .product-row {
     display: flex;
@@ -51,10 +52,11 @@
     position: relative;
     border: 2px dashed #f0c6c0;
     cursor: pointer;
-    transition: transform 0.15s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
   .product:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
   }
   .product a {
     color: #3a3d55; 
@@ -68,7 +70,12 @@
     border-radius: 10px;
     border: 1px dashed #f0c6c0;
     background: #fff;
+    transition: transform 0.2s;
   }
+  .product:hover img {
+    transform: scale(1.05);
+  }
+
   /* 跳轉提示 */
   .copy-tip {
     font-size: 13px;
@@ -76,6 +83,7 @@
     font-weight: 700;
     margin-bottom: 8px;
   }
+
   /* 優惠碼按鈕 */
   .item {
     background: #fff1f0;
@@ -111,6 +119,7 @@
     display: none;
     font-weight: 600;
   }
+
   /* 活動說明 */
   .footer {
     margin-top: 18px;
@@ -123,6 +132,7 @@
     color: #ff6f61;
     font-weight: 700;
   }
+
   /* 底部 Logo + Threads */
   .bottom-logo {
     display: flex;
