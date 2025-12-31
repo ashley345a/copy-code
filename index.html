@@ -37,12 +37,10 @@
     margin-bottom: 18px;
   }
 
-  /* 商品列 */
   .product-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
-    text-align: center;
   }
   .product {
     width: 30%;
@@ -53,10 +51,9 @@
     position: relative;
     border: 2px dashed #f0c6c0;
     cursor: pointer;
-    overflow: hidden;
   }
   .product a {
-    color: #3a3d55; 
+    color: #3a3d55;
     text-decoration: none;
     font-weight: 500;
     display: block;
@@ -69,14 +66,13 @@
     background: #fff;
   }
 
-  /* 蝴蝶結裝飾 + 擺動動畫 */
   .bow {
     position: absolute;
     top: -10px;
     right: -10px;
     width: 30px;
     height: 30px;
-    background-image: url('https://i.imgur.com/6nT0z1H.png'); /* 蝴蝶結圖 */
+    background-image: url('https://i.imgur.com/6nT0z1H.png');
     background-size: contain;
     background-repeat: no-repeat;
     animation: swing 2s ease-in-out infinite alternate;
@@ -87,7 +83,6 @@
     100% { transform: rotate(-10deg); }
   }
 
-  /* 跳轉提示 */
   .copy-tip {
     font-size: 13px;
     color: #ff6f61;
@@ -95,13 +90,11 @@
     margin-bottom: 8px;
   }
 
-  /* 優惠碼按鈕 */
   .item {
     background: #fff1f0;
     border-radius: 16px;
     padding: 14px;
     margin-bottom: 14px;
-    text-align: center;
     border: 2px dashed #f0c6c0;
     position: relative;
   }
@@ -131,21 +124,19 @@
     font-weight: 600;
   }
 
-  /* 活動說明 */
   .footer {
     margin-top: 18px;
     font-size: 13px;
     color: #3a3d55;
     line-height: 1.6;
     text-align: left;
-    white-space: pre-line; /* 保留換行 */
+    white-space: pre-line;
   }
   .footer b {
     color: #ff6f61;
     font-weight: 700;
   }
 
-  /* 底部 Logo + Threads */
   .bottom-logo {
     display: flex;
     align-items: center;
@@ -172,29 +163,37 @@
   <div class="title">(數量有限先用先贏)</div>
   <div class="subtitle">❗❗推薦買蝦皮直營商品，一件就免運（點⬇️）❗❗</div>
 
-  <!-- 三格商品列 -->
   <div class="product-row">
-    <div class="product" onclick="window.open('https://s.shopee.tw/4fpWKVfjm9', '_blank')">
+    <div class="product" onclick="window.open('https://s.shopee.tw/4fpWKVfjm9','_blank')">
       <div class="bow"></div>
       <a>三層衛生紙</a>
-      <img src="https://ppt.cc/farXdx@.jpg" alt="三層衛生紙">
+      <img src="https://ppt.cc/farXdx@.jpg">
     </div>
-    <div class="product" onclick="window.open('https://s.shopee.tw/4VW68CwWjn', '_blank')">
+    <div class="product" onclick="window.open('https://s.shopee.tw/4VW68CwWjn','_blank')">
       <div class="bow"></div>
       <a>義美小泡芙</a>
-      <img src="https://ppt.cc/fwNqbx@.jpg" alt="義美小泡芙">
+      <img src="https://ppt.cc/fwNqbx@.jpg">
     </div>
-    <div class="product" onclick="window.open('https://s.shopee.tw/LgXAYUbgQ', '_blank')">
+    <div class="product" onclick="window.open('https://s.shopee.tw/LgXAYUbgQ','_blank')">
       <div class="bow"></div>
       <a>巧克力酥片</a>
-      <img src="https://ppt.cc/fNB7Zx@.jpg" alt="巧克力酥片">
+      <img src="https://ppt.cc/fNB7Zx@.jpg">
     </div>
   </div>
 
   <div class="copy-tip">⚠️ 跳轉後請點選左上角「輸入優惠代碼」 將折扣碼貼上</div>
 
   <div class="item">
-    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">複製滿 100 折 20 折扣碼</button>
+    <button onclick="copyAndGo(this,'68J4ZP8TAAS')">
+      自動複製滿 100 折 20 折扣碼（12/31）
+    </button>
+    <div class="copied">已複製 ✓</div>
+  </div>
+
+  <div class="item">
+    <button onclick="copyAndGo(this,'45V35RQ4W')">
+      自動複製滿 59 折 10 折扣碼（12/31）
+    </button>
     <div class="copied">已複製 ✓</div>
   </div>
 
@@ -210,7 +209,7 @@
   </div>
 
   <div class="bottom-logo">
-    <img src="https://ppt.cc/fcZ4px@.jpg" alt="logo">
+    <img src="https://ppt.cc/fcZ4px@.jpg">
     Threads｜@ashley345a
   </div>
 
